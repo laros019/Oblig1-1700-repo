@@ -1,5 +1,9 @@
+//Lager arrayet Billetter
 let Billetter = []
+
+//Funksjon for å kjøpe billett
 function kjopBillett() {
+    //Henter verdiene fra input i HTML
     const Film = document.getElementById("Film").value;
     const AntallInn = document.getElementById("Antall").value;
     const Fornavn = document.getElementById("Fornavn").value;
@@ -9,6 +13,7 @@ function kjopBillett() {
     const Antall = Number(AntallInn);
     const Telefonnummer = Number(TlfInn);
 
+    //Setter feilmeldinger til null
     document.getElementById("ikkeValgtFilm").innerHTML = "";
     document.getElementById("ikkeAntall").innerHTML = "";
     document.getElementById("ikkeFornavn").innerHTML = "";
@@ -16,6 +21,7 @@ function kjopBillett() {
     document.getElementById("ikkeTlf").innerHTML = "";
     document.getElementById("ikkeEpost").innerHTML = "";
 
+    //Sjekker om verdiene fra HTML er av typen vi ønsker
     let erGyldig = true;
 
     if (Film === "Ingen") {
@@ -61,6 +67,7 @@ function kjopBillett() {
     if (!erGyldig) {
         return;
     }
+    //Legger inn en bestilling som billett, som deretter skal pushes inn i Billetter-arrayet.
     let billett = {
         Film,
         Antall,
@@ -70,10 +77,11 @@ function kjopBillett() {
         Epost
     };
     Billetter.push(billett);
-    console.log(Billetter);
+    console.log(Billetter);//Sjekker at billettene er lagt til ordentlig. Brukte denne mye til debug.
 
     AltUt();
 
+    //Setter verdien i input til defult.
     document.getElementById("Film").value = "Ingen";
     document.getElementById("Antall").value = "";
     document.getElementById("Fornavn").value = "";
@@ -81,6 +89,7 @@ function kjopBillett() {
     document.getElementById("Telefonnr").value = "";
     document.getElementById("Epost").value = "";
 }
+//Funksjon for utskrift
 function AltUt(){
     let ut = "<table><tr><td>Film:</td><td>Antall:</td><td>Fornavn:</td><td>Etternavn:</td>"+
         "<td>Telefonnummer:</td><td>E-post:</td></tr>"
@@ -91,7 +100,7 @@ function AltUt(){
 
     document.getElementById("AlleBilletter").innerHTML = ut;
 }
-
+//Funksjon for å tømme arrayet, slette utskriften, fjerne feilmeldinger og sette input til defult.
 function slettAlle(){
     Billetter.length = 0;
     console.log(Billetter);
@@ -102,4 +111,11 @@ function slettAlle(){
     document.getElementById("ikkeEtternavn").innerHTML = "";
     document.getElementById("ikkeTlf").innerHTML = "";
     document.getElementById("ikkeEpost").innerHTML = "";
+
+    document.getElementById("Film").value = "Ingen";
+    document.getElementById("Antall").value = "";
+    document.getElementById("Fornavn").value = "";
+    document.getElementById("Etternavn").value = "";
+    document.getElementById("Telefonnr").value = "";
+    document.getElementById("Epost").value = "";
 }
